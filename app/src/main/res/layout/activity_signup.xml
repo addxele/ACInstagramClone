@@ -102,5 +102,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtGetData" />
 
+    <Button
+        android:id="@+id/btnNextActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch Activity"
+        app:layout_constraintTop_toBottomOf="@id/btnGetAllData"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="10dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

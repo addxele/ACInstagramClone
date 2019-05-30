@@ -17,7 +17,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     private EditText edtName, edtPunchSpeed, edtPunchPower,
             edtKickSpeed, edtKickPower;
-    private Button btnSave, btnGetAllData;
+    private Button btnSave, btnGetAllData, btnTransition;
     private TextView txtGetData;
     private String allKickBoxer;
 
@@ -35,10 +35,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         edtKickPower = findViewById(R.id.edtKickPower);
         txtGetData = findViewById(R.id.txtGetData);
         btnGetAllData = findViewById(R.id.btnGetAllData);
+        btnTransition = findViewById(R.id.btnNextActivity);
 
         btnSave.setOnClickListener(SignUp.this);
         txtGetData.setOnClickListener(SignUp.this);
         btnGetAllData.setOnClickListener(SignUp.this);
+        btnTransition.setOnClickListener(SignUp.this);
     }
 
     @Override
@@ -81,6 +83,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             case R.id.btnGetAllData:
                 allKickBoxer = "";
                 ParseQuery<ParseObject> queryAll = ParseQuery.getQuery("KickBoxer");
+               // queryAll.whereGreaterThan("punchPower", 2000);
+                queryAll.whereGreaterThanOrEqualTo("punchPower", 2000);
+                queryAll.setLimit(1);
                 queryAll.findInBackground((objects, e) -> {
                     if (e == null) {
                         if (objects.size() > 0) {
@@ -94,7 +99,11 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     }
                 });
                 break;
-        }
 
+            case R.id.btnNextActivity:
+
+                break;
+
+        }
     }
 }
