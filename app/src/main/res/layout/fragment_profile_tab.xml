@@ -3,8 +3,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileTab">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfileTab"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/edtProfileName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Please enter a profile name..."
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/edtBio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Please enter your bio..."
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/edtProfileName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/edtProfession"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Please enter your profession..."
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/edtBio"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/edtHobbies"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Please enter your hobbies..."
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/edtProfession"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/edtFavoriteSport"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Please enter your favorite sport..."
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/edtHobbies"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <Button
+        android:id="@+id/btnUpdateInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="UPDATE INFO"
+        app:layout_constraintTop_toBottomOf="@+id/edtFavoriteSport"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
