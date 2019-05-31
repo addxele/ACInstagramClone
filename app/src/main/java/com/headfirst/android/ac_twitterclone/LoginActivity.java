@@ -12,7 +12,7 @@ import com.parse.ParseUser;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    private EditText edtLoginEmail, edtLoginPassword;
+    private EditText edtLoginName, edtLoginPassword;
     private Button btnLogin2, btnSignUp2;
 
     @Override
@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         setTitle("Log In");
 
-        edtLoginEmail = findViewById(R.id.edtLoginEmailAddress);
+        edtLoginName = findViewById(R.id.edtLoginName);
         edtLoginPassword = findViewById(R.id.edtLoginPassword);
         btnLogin2 = findViewById(R.id.btnLogin2);
         btnSignUp2 = findViewById(R.id.btnSignUp2);
@@ -39,12 +39,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (id) {
            case R.id.btnLogin2:
                if (edtLoginPassword.getText().toString().equals("")
-                       || edtLoginEmail.getText().toString().equals("")) {
-                   FancyToast.makeText(this, "User email and password is required", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, true).show();
+                       || edtLoginName.getText().toString().equals("")) {
+                   FancyToast.makeText(this, "User name and password is required", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, true).show();
 
                }else {
                    ParseUser appUser = new ParseUser();
-                   appUser.logInInBackground(edtLoginEmail.getText().toString(), edtLoginPassword.getText().toString(), (user, e) -> {
+                   appUser.logInInBackground(edtLoginName.getText().toString(), edtLoginPassword.getText().toString(), (user, e) -> {
                        if (user != null && e == null) {
                            FancyToast.makeText(this, user.getUsername() + " is logged in successfully", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, true).show();
                            transitionToSocialMediaActivity();

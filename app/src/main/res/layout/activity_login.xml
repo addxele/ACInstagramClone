@@ -20,11 +20,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edtLoginEmailAddress"
+        android:id="@+id/edtLoginName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:hint="Please enter an email"
+        android:hint="Please enter user name"
         android:inputType="textEmailAddress"
         android:ems="10"
         android:textColor="@color/colorWhite"
@@ -43,7 +43,7 @@
         android:textColor="@color/colorWhite"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtLoginEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/edtLoginName" />
 
 
     <Button
