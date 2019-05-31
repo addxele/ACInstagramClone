@@ -1,10 +1,12 @@
 package com.headfirst.android.ac_twitterclone;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,13 +18,15 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 
+import libs.mjn.prettydialog.PrettyDialog;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UserTab extends Fragment {
+public class UserTab extends Fragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
     private ListView listView;
-    private ArrayList arrayList;
+    private ArrayList<String> arrayList;
     private ArrayAdapter arrayAdapter;
 
     public UserTab() {
@@ -40,6 +44,8 @@ public class UserTab extends Fragment {
         arrayList = new ArrayList();
         arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, arrayList);
         TextView txtLoading = view.findViewById(R.id.txtLoading);
+        listView.setOnItemClickListener(UserTab.this);
+        listView.setOnItemLongClickListener(UserTab.this);
 
         ParseQuery<ParseUser> parseQuery = ParseUser.getQuery();
 
@@ -60,4 +66,37 @@ public class UserTab extends Fragment {
         return view;
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Intent intent = new Intent(getContext(), UserPosts.class);
+        intent.putExtra("username", arrayList.get(position));
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        ParseQuery<ParseUser> parseQuery = ParseUser.getQuery();
+        parseQuery.whereEqualTo("username", arrayList.get(position));
+        parseQuery.getFirstInBackground(((object, e) -> {
+            if (object != null && e == null) {
+//                FancyToast.makeText(getContext(), object.get("profession") + "", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, true).show();
+                final PrettyDialog prettyDialog = new PrettyDialog(getContext());
+                prettyDialog.setTitle(object.getUsername() + " Info")
+                        .setMessage(object.get("bio") + "\n"
+                                + object.get("profession") + "\n"
+                                + object.get("hobbies") + "\n"
+                                + object.get("favoriteSport"))
+                        .setIcon(R.drawable.person).addButton(
+                        "OK", // button text
+                        R.color.pdlg_color_white,// button text color
+                        R.color.pdlg_color_green,// button background color
+                        () -> { // button onClick listener
+                            prettyDialog.dismiss();
+                        }
+                ).show();
+            }
+        }));
+        return true;
+    }
 }
